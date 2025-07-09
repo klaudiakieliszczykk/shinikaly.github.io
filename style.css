@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat&display=swap');
+
+:root {
+  --color-bg-light: #f5f3f7;
+  --color-bg-dark: #1a1a2e;
+  --color-text-light: #222;
+  --color-text-dark: #eee;
+  --color-primary: #8a56ac;
+  --color-secondary: #d3a5ff;
+  --cursor-size: 40px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+  transition: background 0.5s, color 0.5s;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+body.light {
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  font-family: 'Cinzel', serif;
+  user-select: none;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: var(--color-primary);
+  text-shadow: 0 0 8px var(--color-secondary);
+}
+
+header p {
+  font-style: italic;
+  font-weight: 500;
+  margin-top: 0.3rem;
+  color: var(--color-secondary);
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 25px;
+  width: 50px;
+  height: 25px;
+  cursor: pointer;
+  outline: none;
+}
+
+#theme-toggle:before {
+  content: "🌙";
+  display: block;
+  text-align: center;
+  line-height: 25px;
+  font-size: 18px;
+  color: white;
+}
+
+body.light #theme-toggle:before {
+  content: "☀️";
+}
+
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+/* Linki */
+#links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0 10px var(--color-secondary);
+  transition: background 0.3s ease;
+}
+
+#links a:hover {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  box-shadow: 0 0 20px var(--color-secondary);
+}
+
+#links a svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+body.light #links a {
+  background: var(--color-primary);
+  color: white;
+}
+
+body.light #links a:hover {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+/* Magic cursor */
+#magic-cursor {
+  position: fixed;
+  pointer-events: none;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  background: url('data:image/svg+xml;utf8,<svg fill="purple" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M32 0l10 60-12-10-12 10z"/></svg>') no-repeat center center;
+  background-size: contain;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+}
+
+/* Particle container */
+#particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 9998;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  filter: drop-shadow(0 0 3px var(--color-secondary));
+  opacity: 0.8;
+  animation: floatUp 1s ease forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-30px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Typing animation */
+.typing {
+  border-right: 3px solid var(--color-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: typing 3s steps(30) infinite alternate;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  main {
+    margin: 1rem;
+  }
+
+  #links {
+    justify-content: center;
+  }
+}
